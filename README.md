@@ -13,3 +13,6 @@
 
 1. Realize, that you do not need a start page.
 2. That's that.
+
+![image](https://github.com/user-attachments/assets/600bcc03-47a9-471e-82ee-91571d521b63)
+
