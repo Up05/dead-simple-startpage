@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startpage</title>
+	<link rel="icon" type="image/x-icon" href="sad.ico">
+</head>
+<body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+        * {
+            font-family: 'Space mono', monospace;
+            font-weight: 600;
+            color: #98971a;
+            text-decoration-thickness: 2px;
+            text-decoration-color: #d65d0e;
+        }
+
+        body {
+            background-color: #282828;
+        }
+
+        #mode>* {
+            margin-right: 4vw;
+        }
+        ul {
+            list-style-type: none;
+            a {
+                text-decoration: none;
+            }
+        }
+
+        iframe {
+            width: 95vw;
+            height: 90vh;
+            border: none;
+            position: relative;
+            left: 2.5vw;
+        }
+    </style>
+
+
+   <div id="mode"> 
+    <span>[0] links</span>
+    <span>[1] odin </span>
+    <span>[2] cpp  </span>
+    <span>[3] ascii</span>
+   </div> 
+
+   <br>
+
+   <div id="links">
+        <ul>
+            <li><a id="y" href="https://youtube.com">[y] youtube</a></li>
+            <li><a id="r" href="https://reddit.com">[r] reddit</a></li>
+            <li><a id="l" href="https://linkedin.com">[l] linkedin</a></li>
+            <li><a id="s" href="https://stackoverflow.com">[s] stackoverflow</a></li>
+
+        </ul>    
+
+        <ul>
+            <li><a id="g" href="https://godbolt.org">[g] godbolt</a></li>
+            <li><a id="a" href="https://astexplorer.net">[a] astexplorer</a></li>
+            <li><a id="d" href="https://debuggex.com">[d] debuggex</a></li>
+            <li><a id="c" href="https://onlinegdb.com">[c] c compiler</a></li>
+        </ul>    
+
+        <ul>
+            <li><a id="q" href="https://teamwork.tf/community/quickplay">[q] quickplay</a></li>
+            <li><a id="u" href="https://uncletopia.com">[u] uncletopia</a></li>
+            <li><a id="w" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Pokemon_Type_Chart.svg/2048px-Pokemon_Type_Chart.svg.png">[w] weaknesses</a></li>
+        </ul>    
+
+        
+
+   </div>
+
+   <!-- <iframe id="iframe" src="https://pkg.odin-lang.org" frameborder="0"></iframe> -->
+   <iframe id="iframe" src="" frameborder="0"></iframe>
+
+   <script>
+        {
+            let ssource = localStorage.getItem("mode"); // Hungarian notation tends to be quite useful in deprecated languages.
+            document.getElementById("mode").src = ssource;
+        }
+
+        let pmodes = [
+            "https://pkg.odin-lang.org",
+            "https://en.cppreference.com/w/",
+            "https://www.asciitable.com"
+        ]
+
+        document.addEventListener("keyup", function(event) {
+            if(event.ctrlKey || event.shiftKey || event.altKey || event.metaKey) return;
+
+            let imode = parseInt(event.key); // scary!
+            if(imode > 0 && imode <= pmodes.length) {
+                let hiframe = document.getElementById("iframe");
+                hiframe.src = pmodes[imode - 1];
+                hiframe.hidden = false;
+                document.getElementById("links").hidden = true;
+                hiframe.onload = function() {
+                    hiframe.focus();
+                }
+            } else if(imode == 0) { // unfortunatly there is no safe comparison operation in JavaScript
+                let hiframe = document.getElementById("iframe");
+                hiframe.src = "";
+                hiframe.hidden = true;
+                document.getElementById("links").hidden = false;
+            }
+
+            let bis_letter = event.keyCode >= 65 && event.keyCode <= 90;
+            if(bis_letter) {
+                let hlink = document.getElementById(event.key);
+                if(hlink != null && hlink != undefined) {
+                    if(!document.getElementById("links").hidden) {
+                        hlink.click();
+                    }
+                }
+            }
+
+        })
+
+   </script>
+</body>
+</html>
