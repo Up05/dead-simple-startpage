@@ -28,5 +28,6 @@ To add your own crap, edit the index.html.
 Add `class=<letter>` to any `<a>` elements.  
 For categories, just copy-paste and change what you need.
 
-![image](https://github.com/user-attachments/assets/600bcc03-47a9-471e-82ee-91571d521b63)
+![image](https://github.com/user-attachments/assets/e780b9cd-a9f9-4f0c-889e-fd8f49e06fbe)
+
 
